@@ -4,6 +4,7 @@ import './App.css';
 
 import ChatInput from './input/ChatInput';
 import AuthorInput from './author/AuthorInput';
+import ChatHistory from './history/ChatHistory';
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +21,14 @@ class App extends Component {
   }
 
   onSend() {
-    this.setState({input: ""});
+    const chatLine = {
+      keyword: this.state.input,
+      author: this.state.author
+    };
+    this.setState({
+      input: "",
+      chatLines: [(chatLine)].concat(this.state.chatLines)
+    }, () => console.log(this.state));
   }
 
   onInputChange(event) {
@@ -43,7 +51,6 @@ class App extends Component {
           This is a chat app where you can only use gifs
         </p>
 
-
         <div className="container">
           {!this.state.author &&
             <AuthorInput onSubmit={this.onAuthorSubmit}/>
@@ -54,6 +61,10 @@ class App extends Component {
                      onInputChange={this.onInputChange}
                      inputValue={this.state.input}
           />}
+
+          {this.state.author &&
+          <ChatHistory chatLines={this.state.chatLines}/>
+          }
         </div>
       </div>
     );
