@@ -17,11 +17,10 @@ class App extends Component {
   }
 
   onSend() {
-    this.setState({input: "hello world"}, () => console.log(this.state));
+    this.setState({input: ""});
   }
 
   onInputChange(event) {
-    console.log(event.target.value);
     this.setState({input: event.target.value});
   }
 
@@ -39,7 +38,7 @@ class App extends Component {
         <div className="container">
           <ChatInput onSend={this.onSend}
                      onInputChange={this.onInputChange}
-                     inputValue="Hello world fjaldfjlakj"
+                     inputValue={this.state.input}
           />
         </div>
       </div>

@@ -6,10 +6,10 @@ const ChatInput = (props) => {
     <FormGroup>
       <InputGroup>
         <InputGroup.Button>
-          <Button onClick={props.onSend}>Send</Button>
+          <Button onClick={props.onSend} className="btn-outline-success">Send</Button>
         </InputGroup.Button>
         <FormControl onChange={props.onInputChange}
-                     value={props.value}
+                     value={props.inputValue}
                      type="text"/>
       </InputGroup>
     </FormGroup>
