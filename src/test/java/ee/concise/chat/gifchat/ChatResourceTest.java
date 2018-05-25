@@ -64,7 +64,8 @@ class ChatResourceTest {
         when(chatRepository.save(any(ChatLine.class))).thenReturn(new ChatLine(1L, "phew", "Indrek"));
 
         mvc.perform(post("/api/chat")
-            .content(payload))
+            .content(payload)
+            .contentType("application/json"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.author", is("Indrek")))
             .andExpect(jsonPath("$.id", is(1)))
