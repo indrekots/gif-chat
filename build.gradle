@@ -66,4 +66,18 @@ appNpmBuild.dependsOn appNpmInstall
 copyWebApp.dependsOn appNpmBuild
 compileJava.dependsOn copyWebApp
 
+node {
+    // If true, it will download node using above parameters.
+    download = true
+
+    // Set the work directory for unpacking node
+    workDir = file("${project.buildDir}/nodejs")
+
+    // Set the work directory for NPM
+    npmWorkDir = file("${project.buildDir}/npm")
+
+    // Set the work directory for Yarn
+    yarnWorkDir = file("${project.buildDir}/yarn")
+}
+
 
