@@ -6,10 +6,10 @@ const ChatHistory = (props) => {
     <Grid>
       {props.chatLines.map((item, index) => (
         <Row key={index}>
-          <Col md="3">
+          <Col md={3}>
             {item.author}
           </Col>
-          <Col md={"3"}>
+          <Col md={3}>
             {item.keyword}
           </Col>
         </Row>

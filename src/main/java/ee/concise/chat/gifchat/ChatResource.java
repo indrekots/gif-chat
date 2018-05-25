@@ -1,9 +1,6 @@
 package ee.concise.chat.gifchat;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +20,7 @@ public class ChatResource {
     }
 
     @PostMapping
-    public ChatLine create(ChatLine chatLine) {
+    public ChatLine create(@RequestBody ChatLine chatLine) {
         return chatRepository.save(chatLine);
     }
 }

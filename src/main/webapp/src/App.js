@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 
@@ -22,14 +23,20 @@ class App extends Component {
 
   onSend(event) {
     event.preventDefault();
+
     const chatLine = {
       keyword: this.state.input,
       author: this.state.author
     };
-    this.setState({
-      input: "",
-      chatLines: [(chatLine)].concat(this.state.chatLines)
-    }, () => console.log(this.state));
+
+    axios.post('/api/chat', chatLine)
+      .then(response => {
+        console.log(response);
+        this.setState({
+          input: "",
+          chatLines: [(chatLine)].concat(this.state.chatLines)
+        });
+      });
   }
 
   onInputChange(event) {
@@ -54,7 +61,7 @@ class App extends Component {
 
         <div className="container">
           {!this.state.author &&
-            <AuthorInput onSubmit={this.onAuthorSubmit}/>
+          <AuthorInput onSubmit={this.onAuthorSubmit}/>
           }
 
           {this.state.author &&
