@@ -37,7 +37,7 @@ class ChatRepositoryTest {
 
         chatRepository.save(line);
 
-        assertEquals(chatRepository.count(), 1);
+        assertEquals(1, chatRepository.count());
     }
 
     @Test
