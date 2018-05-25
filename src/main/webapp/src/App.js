@@ -21,6 +21,13 @@ class App extends Component {
     this.onAuthorSubmit = this.onAuthorSubmit.bind(this);
   }
 
+  componentDidMount() {
+    axios.get('/api/chat')
+      .then(response => {
+        this.setState({chatLines: response.data})
+      });
+  }
+
   onSend(event) {
     event.preventDefault();
 
@@ -31,10 +38,9 @@ class App extends Component {
 
     axios.post('/api/chat', chatLine)
       .then(response => {
-        console.log(response);
         this.setState({
           input: "",
-          chatLines: [(chatLine)].concat(this.state.chatLines)
+          chatLines: [response.data].concat(this.state.chatLines)
         });
       });
   }
