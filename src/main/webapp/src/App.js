@@ -20,7 +20,8 @@ class App extends Component {
     this.onAuthorSubmit = this.onAuthorSubmit.bind(this);
   }
 
-  onSend() {
+  onSend(event) {
+    event.preventDefault();
     const chatLine = {
       keyword: this.state.input,
       author: this.state.author
