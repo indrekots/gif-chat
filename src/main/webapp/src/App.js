@@ -19,12 +19,18 @@ class App extends Component {
     this.onSend = this.onSend.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
     this.onAuthorSubmit = this.onAuthorSubmit.bind(this);
+    this.fetchChats = this.fetchChats.bind(this);
   }
 
   componentDidMount() {
+    this.fetchChats();
+    setInterval(this.fetchChats, 500);
+  }
+
+  fetchChats() {
     axios.get('/api/chat')
       .then(response => {
-        this.setState({chatLines: response.data})
+        this.setState({chatLines: response.data.reverse()})
       });
   }
 
