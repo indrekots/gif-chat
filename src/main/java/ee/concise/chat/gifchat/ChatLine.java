@@ -20,4 +20,5 @@ class ChatLine {
     private Long id;
     private String keyword;
     private String author;
+    private String gifUrl;
 }

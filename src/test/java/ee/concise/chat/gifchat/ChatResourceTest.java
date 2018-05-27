@@ -30,10 +30,13 @@ class ChatResourceTest {
     @Mock
     private ChatRepository chatRepository;
 
+    @Mock
+    private GiphyClient giphyClient;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        ChatResource chatResource = new ChatResource(chatRepository);
+        ChatResource chatResource = new ChatResource(chatRepository, giphyClient);
         mvc = MockMvcBuilders.standaloneSetup(chatResource).build();
     }
 
@@ -48,8 +51,8 @@ class ChatResourceTest {
     }
 
     private List<ChatLine> chatLines() {
-        ChatLine line1 = new ChatLine(1L, "wow", "Indrek");
-        ChatLine line2 = new ChatLine(2L, "nice", "Anon");
+        ChatLine line1 = new ChatLine(1L, "wow", "Indrek", "");
+        ChatLine line2 = new ChatLine(2L, "nice", "Anon", "");
 
         return Arrays.asList(line1, line2);
     }
@@ -61,7 +64,7 @@ class ChatResourceTest {
             "    \"author\": \"Indrek\",\n" +
             "    \"keyword\": \"phew\"\n" +
             "}";
-        when(chatRepository.save(any(ChatLine.class))).thenReturn(new ChatLine(1L, "phew", "Indrek"));
+        when(chatRepository.save(any(ChatLine.class))).thenReturn(new ChatLine(1L, "phew", "Indrek", ""));
 
         mvc.perform(post("/api/chat")
             .content(payload)

@@ -2,3 +2,5 @@ server:
   error:
     whitelabel:
       enabled: false
+
+apiKey: ${API_KEY:default}

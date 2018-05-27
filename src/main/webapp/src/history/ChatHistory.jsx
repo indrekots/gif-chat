@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, Row, Col} from 'react-bootstrap';
+import {Grid, Row, Col, Image} from 'react-bootstrap';
 
 const ChatHistory = (props) => {
   return (
@@ -9,9 +9,16 @@ const ChatHistory = (props) => {
           <Col md={3}>
             {item.author}
           </Col>
+
+          {item.gifUrl &&
+          <Col md={3}>
+            <Image src={item.gifUrl} responsive thumbnail/>
+          </Col>}
+
+          {!item.gifUrl &&
           <Col md={3}>
             {item.keyword}
-          </Col>
+          </Col>}
         </Row>
       ))}
     </Grid>

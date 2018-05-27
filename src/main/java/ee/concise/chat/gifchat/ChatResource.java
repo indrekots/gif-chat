@@ -9,9 +9,11 @@ import java.util.List;
 public class ChatResource {
 
     private final ChatRepository chatRepository;
+    private final GiphyClient giphyClient;
 
-    public ChatResource(ChatRepository chatRepository) {
+    public ChatResource(ChatRepository chatRepository, GiphyClient giphyClient) {
         this.chatRepository = chatRepository;
+        this.giphyClient = giphyClient;
     }
 
     @GetMapping
@@ -21,6 +23,8 @@ public class ChatResource {
 
     @PostMapping
     public ChatLine create(@RequestBody ChatLine chatLine) {
+        String gifUrl = giphyClient.fetchGifUrl(chatLine.getKeyword());
+        chatLine.setGifUrl(gifUrl);
         return chatRepository.save(chatLine);
     }
 }
